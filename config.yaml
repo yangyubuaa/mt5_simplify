@@ -1,0 +1,3 @@
+source_path: mt5_model/mt5-base
+
+target_path: mt5_model/mt5-base-simplify
