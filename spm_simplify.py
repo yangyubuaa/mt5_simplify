@@ -10,8 +10,8 @@ import sentencepiece as spm
 
 if __name__ == '__main__':
     min_count = 1000
-    old_model = 'mt5-base-simplify/spiece.model'
-    new_model = 'mt5-base-simplify/spiece_cn.model'
+    old_model = 'mt5_model/mt5-base-simplify/spiece.model'
+    new_model = 'mt5_model/mt5-base-simplify/spiece_cn.model'
     new_model_keep_tokens = 'sentencepiece_cn_keep_tokens.json'
 
     dic = json.load(open('result.json'))

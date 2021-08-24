@@ -20,8 +20,10 @@ def simp(config):
     print(shared.shape)  # (250112, 768) 我们可以计算出shared层占用的参数量为250112 * 768 = 192M
     # 占用的内存为768MB左右，所以需要进行精简
     # 读取id，假设id为[0, 2]
-    pass
-    simplified = torch.index_select(shared, 0, torch.tensor([0, 2]))
+    with open("sentencepiece_cn_keep_tokens.json", "r", encoding="utf-8") as r:
+        id = json.load(r)
+    print(id)
+    simplified = torch.index_select(shared, 0, torch.tensor(id))
     print(simplified.shape)
     new_embedding_params = OrderedDict()
     new_embedding_params["shared.weight"] = simplified
@@ -38,6 +40,9 @@ def simp(config):
 
 def verify(config):
     m = T5Model.from_pretrained(config["target_path"])
+    for name, params in m.named_parameters():
+        print(params.shape)
+        break
 
 
 if __name__ == '__main__':
